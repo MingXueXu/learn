@@ -1,5 +1,5 @@
 # 学习指引
-
+修改
 ### 启动
 
 安装JDK 1.8和Gradle,设置环境变量C:\gradle-5.6.1\bin，命令行运行gradle bootrun
