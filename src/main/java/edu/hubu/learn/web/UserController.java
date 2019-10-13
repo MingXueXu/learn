@@ -60,6 +60,7 @@ public class UserController {
 
     @RequestMapping("/do_add")
     public ModelAndView doAddUser(User user) {
+        user.setAvatar("");
         userService.addUser(user);
         ModelAndView mav = new ModelAndView("redirect:/user/list");
         return mav;
