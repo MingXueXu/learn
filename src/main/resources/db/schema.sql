@@ -13,14 +13,14 @@ ALTER TABLE `user` ADD UNIQUE (`username`);
 
 DROP TABLE IF EXISTS `video`;
 CREATE TABLE `video` (
-  `videoid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `videoname` varchar(50) DEFAULT NULL comment '视频名称',
-  `videokind` varchar(50) DEFAULT NULL comment '视频类型',
-  `videolike` varchar(2550) DEFAULT NULL comment '视频点赞数',
-  `videogift` varchar(50) DEFAULT NULL comment '视频送花数',
-  `videocollect` varchar(50) DEFAULT NULL comment '视频收藏数',
-  `videoclick` varchar(50) DEFAULT NULL comment '视频播放数',
+  `video_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `video_name` varchar(50) DEFAULT NULL comment '视频名称',
+  `video_kind` varchar(50) DEFAULT NULL comment '视频类型',
+  `video_like` varchar(2550) DEFAULT NULL comment '视频点赞数',
+  `video_gift` varchar(50) DEFAULT NULL comment '视频送花数',
+  `video_collect` varchar(50) DEFAULT NULL comment '视频收藏数',
+  `video_click` varchar(50) DEFAULT NULL comment '视频播放数',
   `upload_date` timestamp DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`videoid`)
+  PRIMARY KEY (`video_id`)
 );
 
