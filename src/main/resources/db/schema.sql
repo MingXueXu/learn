@@ -2,57 +2,25 @@ SET NAMES utf8;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userid` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL comment '用户名',
   `password` varchar(255) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
   `register_date` timestamp DEFAULT CURRENT_TIMESTAMP,
-  `enabled` tinyint(1) DEFAULT 1,
-  `role` varchar(50) DEFAULT NULL comment '角色',
   `avatar_url` varchar(200) DEFAULT '' comment '头像',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`userid`)
 );
 ALTER TABLE `user` ADD UNIQUE (`username`);
-ALTER TABLE `user` ADD UNIQUE (`email`);
-ALTER TABLE `user` ADD UNIQUE (`phone`);
 
-CREATE TABLE `XGX` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) DEFAULT NULL comment '用户名',
-  `password` varchar(255) DEFAULT NULL comment '用户密码',
-  `sex` varchar(255) DEFAULT NULL comment '性别',
-  `email` varchar(50) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `register_date` timestamp DEFAULT CURRENT_TIMESTAMP,
-  `enabled` tinyint(1) DEFAULT 1,
-  `age` varchar(50) DEFAULT NULL comment '巴龄',
-  `avatar_url` varchar(200) DEFAULT '' comment '头像',
-  PRIMARY KEY (`id`)
+DROP TABLE IF EXISTS `video`;
+CREATE TABLE `video` (
+  `videoid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `videoname` varchar(50) DEFAULT NULL comment '视频名称',
+  `videokind` varchar(50) DEFAULT NULL comment '视频类型',
+  `videolike` varchar(2550) DEFAULT NULL comment '视频点赞数',
+  `videogift` varchar(50) DEFAULT NULL comment '视频送花数',
+  `videocollect` varchar(50) DEFAULT NULL comment '视频收藏数',
+  `videoclick` varchar(50) DEFAULT NULL comment '视频播放数',
+  `upload_date` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`videoid`)
 );
 
-CREATE TABLE `FZQ` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) DEFAULT NULL comment '用户名',
-  `password` varchar(255) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `register_date` timestamp DEFAULT CURRENT_TIMESTAMP,
-  `enabled` tinyint(1) DEFAULT 1,
-  `role` varchar(50) DEFAULT NULL comment '角色',
-  `avatar_url` varchar(200) DEFAULT '' comment '头像',
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `LB` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) DEFAULT NULL comment '用户名',
-  `password` varchar(255) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `register_date` timestamp DEFAULT CURRENT_TIMESTAMP,
-  `enabled` tinyint(1) DEFAULT 1,
-  `role` varchar(50) DEFAULT NULL comment '角色',
-  `avatar_url` varchar(200) DEFAULT '' comment '头像',
-  PRIMARY KEY (`id`)
-);
