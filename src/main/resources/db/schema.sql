@@ -16,3 +16,8 @@ CREATE TABLE `user` (
 ALTER TABLE `user` ADD UNIQUE (`username`);
 ALTER TABLE `user` ADD UNIQUE (`email`);
 ALTER TABLE `user` ADD UNIQUE (`phone`);
+
+CREATE table 'intro'(
+  'id'bigint(20) NOT NULL AUTO_INCREMENT,
+  'introduction'varchar(200)DEFAULT NULL,
+);
