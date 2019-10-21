@@ -1,4 +1,4 @@
-<html>
+<html lang="zh">
 
 <head>
     <meta charset="utf-8">
@@ -16,6 +16,7 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.avatar }}</td>
+                <td v-on:click="del(user.id)">删除</td>
             </tr>
         </table>
     </div>
@@ -27,14 +28,31 @@
                 users: []
             },
             created: function () {
-                this.getUsers();
+                this.list();
             },
             methods: {
-                getUsers: function () {
+                list: function () {
                     var vm = this
                     vm.$http.get('/rest/user/list').then(
                         function (data) {
                             vm.users = data.body
+                        }).catch(function (response) {
+                        console.log(response)
+                    })
+                },
+                del: function (id) {
+                    var vm = this
+                    vm.$http.delete('/rest/user/' + id).then(
+                        function (data) {
+                            success = data.body.success
+                            if (success) {
+                                for (i = 0; i < vm.users.length; i++) {
+                                    if (vm.users[i].id === id) {
+                                        vm.users.splice(i, 1)
+                                        break
+                                    }
+                                }
+                            }
                         }).catch(function (response) {
                         console.log(response)
                     })
