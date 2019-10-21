@@ -2,9 +2,6 @@ package edu.hubu.learn.entity;
 
 import javax.persistence.*;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.Data;
 
 @Entity
