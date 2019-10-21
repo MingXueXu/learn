@@ -1,4 +1,6 @@
 spring:
+  mvc:
+    static-path-pattern: /static/**
   datasource:
     data: classpath:db/data.sql
     schema: classpath:db/schema.sql
