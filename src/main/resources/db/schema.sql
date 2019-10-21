@@ -13,6 +13,12 @@ CREATE TABLE `user` (
   `avatar_url` varchar(200) DEFAULT '' comment '头像',
   PRIMARY KEY (`id`)
 );
+
+ALTER TABLE `user` ADD UNIQUE (`username`);
+ALTER TABLE `user` ADD UNIQUE (`email`);
+ALTER TABLE `user` ADD UNIQUE (`phone`);
+
+DROP TABLE IF EXISTS `helloUser`;
 CREATE TABLE `helloUser` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL comment '用户名',
@@ -25,6 +31,11 @@ CREATE TABLE `helloUser` (
   `avatar_url` varchar(200) DEFAULT '' comment '头像',
   PRIMARY KEY (`id`)
 );
-ALTER TABLE `user` ADD UNIQUE (`username`);
-ALTER TABLE `user` ADD UNIQUE (`email`);
-ALTER TABLE `user` ADD UNIQUE (`phone`);
+ALTER TABLE `helloUser` ADD UNIQUE (`id`);
+
+DROP TABLE IF EXISTS `file`;
+CREATE TABLE `file` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL comment '文件名',
+)
+ALTER TABLE `file` ADD UNIQUE (`id`);
