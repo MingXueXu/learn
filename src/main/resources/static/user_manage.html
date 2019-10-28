@@ -27,7 +27,7 @@
             <input id="pass" v-model="current_user.password">
             <label for="avatar">头像</label>
             <input id="avatar" v-model="current_user.avatar">
-            <input v-on:click="apply()" type="button">
+            <input v-on:click="apply()" type="button" value="提交">
         </div>
     </div>
     <script>
@@ -63,8 +63,8 @@
                                 }
                             }
                         }
-                    }).catch(function (response) {
-                        console.log(response)
+                    }, function (response) {
+                        alert(response.body.error)
                     })
                 },
                 edit: function (user) {
@@ -76,15 +76,15 @@
                     if (vm.current_user.id) {
                         vm.$http.put('/rest/user', vm.current_user).then(function (data) {
                             alert("修改成功")
-                        }).catch(function (response) {
-                            console.log(response)
+                        }, function (response) {
+                            alert(response.body.error)
                         })
                     } else {
                         vm.$http.post('/rest/user', vm.current_user).then(function (data) {
                             vm.users.push(data.body)
                             alert("添加成功")
-                        }).catch(function (response) {
-                            console.log(response)
+                        }, function (response) {
+                            alert(response.body.error)
                         })
                     }
                 }
