@@ -1,0 +1,96 @@
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <title>user manage</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ message}}
+        <table>
+            <tr v-for="user in users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.avatar }}</td>
+                <td v-on:click="del(user.id)">删除</td>
+                <td v-on:click="edit(user)">修改</td>
+            </tr>
+        </table>
+        <div>
+            <label for="name">姓名</label>
+            <input id="name" v-model="current_user.username">
+            <label for="pass">密码</label>
+            <input id="pass" v-model="current_user.password">
+            <label for="avatar">头像</label>
+            <input id="avatar" v-model="current_user.avatar">
+            <input v-on:click="apply()" type="button" value="提交">
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello, world',
+                users: [],
+                current_user: {}
+            },
+            created: function () {
+                this.list();
+            },
+            methods: {
+                list: function () {
+                    var vm = this
+                    vm.$http.get('/rest/user/list').then(
+                        function (data) {
+                            vm.users = data.body
+                        }).catch(function (response) {
+                        console.log(response)
+                    })
+                },
+                del: function (id) {
+                    var vm = this
+                    vm.$http.delete('/rest/user/' + id).then(function (data) {
+                        success = data.body.success
+                        if (success) {
+                            for (i = 0; i < vm.users.length; i++) {
+                                if (vm.users[i].id === id) {
+                                    vm.users.splice(i, 1)
+                                    break
+                                }
+                            }
+                        }
+                    }, function (response) {
+                        alert(response.body.error)
+                    })
+                },
+                edit: function (user) {
+                    var vm = this
+                    vm.current_user = user
+                },
+                apply: function () {
+                    var vm = this
+                    if (vm.current_user.id) {
+                        vm.$http.put('/rest/user', vm.current_user).then(function (data) {
+                            alert("修改成功")
+                        }, function (response) {
+                            alert(response.body.error)
+                        })
+                    } else {
+                        vm.$http.post('/rest/user', vm.current_user).then(function (data) {
+                            vm.users.push(data.body)
+                            alert("添加成功")
+                        }, function (response) {
+                            alert(response.body.error)
+                        })
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
