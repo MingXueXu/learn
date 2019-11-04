@@ -1,7 +1,7 @@
 spring:
   datasource:
-    data: classpath:db/data.sql
-    schema: classpath:db/schema.sql
+#    data: classpath:db/data.sql
+#    schema: classpath:db/schema.sql
     url: jdbc:h2:~/db;MODE=MySql;DB_CLOSE_DELAY=-1
     username: sa
     password: sa
@@ -12,9 +12,9 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        show_sql: true
-        use_sql_comments: true
-        format_sql: true
+        show-sql: true
+        use-sql-comments: true
+        format-sql: true
   h2:
     console:
       enabled: true
